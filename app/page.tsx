@@ -171,11 +171,11 @@ export default function Home() {
         setAlertsEnabled(true)
         return true
       } else {
-        alert('請允許通知權限以接收價格警報')
+        alert('Please allow notification permissions to receive price alerts')
         return false
       }
     } else {
-      alert('您的瀏覽器不支持通知功能')
+      alert('Your browser does not support notification features')
       return false
     }
   }
@@ -183,7 +183,7 @@ export default function Home() {
   const sendPriceAlert = (symbol: string, price: number, changePercent: number) => {
     try {
       if (alertsEnabled && 'Notification' in window && Notification.permission === 'granted') {
-        new Notification(' detecting large fluctuations!', {
+        new Notification('Large fluctuation detected!', {
           body: `${symbol} current price is ${formatPrice(price)}, change ${changePercent > 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
           icon: '/'
         })
@@ -258,7 +258,7 @@ export default function Home() {
           {/* Crypto Section */}
           <div className="bg-blue-800/60 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-blue-400/30 shadow-2xl">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-300 mb-4 sm:mb-6 text-center">
-              \u52a0\u5bc6\u8ca8\u5e63
+              {'\u52a0\u5bc6\u8ca8\u5e63'}
             </h2>
             <div className="space-y-4">
               <div className="bg-blue-800/50 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-blue-400/20 shadow-xl">
@@ -270,7 +270,7 @@ export default function Home() {
                   {formatPrice(btcData.price)}
                 </div>
                 <div className="text-sm text-gray-400 mt-1">
-                  \u6210\u672c\u4ef7: {btcData.costPrice ? formatPrice(btcData.costPrice) : '--'}
+                  {'\u6210\u672c\u50f9: '}{btcData.costPrice ? formatPrice(btcData.costPrice) : '--'}
                 </div>
                 {btcData.price && btcData.costPrice && (
                   <div className={`text-sm mt-1 font-semibold ${getProfitLossColor(calculateProfitLoss(btcData.price, btcData.costPrice).percentage)}`}>
@@ -289,7 +289,7 @@ export default function Home() {
           {/* Stocks Section */}
           <div className="bg-blue-800/60 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-blue-400/30 shadow-2xl">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-300 mb-4 sm:mb-6 text-center">
-              \u7f8e\u80a1
+              {'\u7f8e\u80a1'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {stocks.map((stock) => {
@@ -305,7 +305,7 @@ export default function Home() {
                     </div>
                     {stock.costPrice && (
                       <div className="text-xs text-gray-400">
-                        \u6210\u672c: {formatPrice(stock.costPrice)}
+                        {'\u6210\u672c: '}{formatPrice(stock.costPrice)}
                       </div>
                     )}
                     {profitLoss && (
@@ -336,14 +336,14 @@ export default function Home() {
           
           {lastUpdated && (
             <div className="block text-gray-400 text-xs sm:text-sm mt-2">
-              \u6700\u5f8c\u66f4\u65b0\u6642\u95f4: {lastUpdated}
+              {'\u6700\u5f8c\u66f4\u65b0\u6642\u95f3: '}{lastUpdated}
             </div>
           )}
         </div>
         
         <footer className="text-center mt-8 pb-4">
           <div className="text-gray-500 text-xs sm:text-sm">
-            \u6211\u7684\u79c1\u4eba\u91d1\u878d\u96f7\u8fbe v1.0
+            {'\u6211\u7684\u79c1\u4eba\u91d1\u878d\u96f7\u8fbe v1.0'}
           </div>
         </footer>
       </div>
