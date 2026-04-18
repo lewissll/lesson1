@@ -181,11 +181,15 @@ export default function Home() {
   }
 
   const sendPriceAlert = (symbol: string, price: number, changePercent: number) => {
-    if (alertsEnabled && 'Notification' in window) {
-      new Notification('檢測到大波動！', {
-        body: `${symbol} 當前價格是 ${formatPrice(price)}，變動 ${changePercent > 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
-        icon: '/favicon.ico'
-      })
+    try {
+      if (alertsEnabled && 'Notification' in window && Notification.permission === 'granted') {
+        new Notification(' detecting large fluctuations!', {
+          body: `${symbol} current price is ${formatPrice(price)}, change ${changePercent > 0 ? '+' : ''}${changePercent.toFixed(2)}%`,
+          icon: '/'
+        })
+      }
+    } catch (error) {
+      console.error('Notification error:', error)
     }
   }
 
